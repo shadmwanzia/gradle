@@ -22,7 +22,6 @@ import groovy.lang.GroovyResourceLoader;
 import groovy.lang.Script;
 import org.codehaus.groovy.ast.ClassNode;
 import org.codehaus.groovy.ast.stmt.Statement;
-import org.codehaus.groovy.classgen.GeneratorContext;
 import org.codehaus.groovy.control.CompilationFailedException;
 import org.codehaus.groovy.control.CompilationUnit;
 import org.codehaus.groovy.control.CompilerConfiguration;
@@ -118,7 +117,7 @@ public class DefaultScriptCompilationHandler implements ScriptCompilationHandler
             protected CompilationUnit createCompilationUnit(CompilerConfiguration compilerConfiguration,
                                                             CodeSource codeSource) {
 
-                CompilationUnit compilationUnit = new CustomCompilationUnit(compilerConfiguration, codeSource, customVerifier, this);
+                CompilationUnit compilationUnit = new CustomCompilationUnit(compilerConfiguration, codeSource, customVerifier, this, simpleNameToFQN);
 
                 if (transformer != null) {
                     transformer.register(compilationUnit);
@@ -218,7 +217,7 @@ public class DefaultScriptCompilationHandler implements ScriptCompilationHandler
         }
     }
 
-    private static class PackageStatementDetector implements CompilationUnit.ISourceUnitOperation {
+    private static class PackageStatementDetector extends CompilationUnit.SourceUnitOperation {
         private boolean hasPackageStatement;
 
         @Override
@@ -227,7 +226,7 @@ public class DefaultScriptCompilationHandler implements ScriptCompilationHandler
         }
     }
 
-    private static class EmptyScriptDetector implements CompilationUnit.ISourceUnitOperation {
+    private static class EmptyScriptDetector extends CompilationUnit.SourceUnitOperation {
         private boolean emptyScript;
         private boolean hasMethods;
 
@@ -267,34 +266,7 @@ public class DefaultScriptCompilationHandler implements ScriptCompilationHandler
         }
     }
 
-    @SuppressWarnings("deprecation")
-    private class CustomCompilationUnit extends CompilationUnit {
-        public CustomCompilationUnit(CompilerConfiguration compilerConfiguration, CodeSource codeSource, final Action<? super ClassNode> customVerifier, GroovyClassLoader groovyClassLoader) {
-            super(compilerConfiguration, codeSource, groovyClassLoader);
-            try {
-                final Field classgen = CompilationUnit.class.getDeclaredField("classgen");
-                classgen.setAccessible(true);
-                final IPrimaryClassNodeOperation realClassgen = (IPrimaryClassNodeOperation) classgen.get(this);
-                classgen.set(this, new PrimaryClassNodeOperation() {
 
-                    @Override
-                    public boolean needSortedInput() {
-                        return realClassgen.needSortedInput();
-                    }
-
-                    @Override
-                    public void call(SourceUnit source, GeneratorContext context, ClassNode classNode) throws CompilationFailedException {
-                        customVerifier.execute(classNode);
-                        realClassgen.call(source, context, classNode);
-                    }
-                });
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-
-            this.resolveVisitor = new GradleResolveVisitor(this, simpleNameToFQN);
-        }
-    }
 
     private static class ClassesDirCompiledScript<T extends Script, M> implements CompiledScript<T, M> {
         private final boolean isEmpty;
