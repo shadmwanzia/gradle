@@ -41,6 +41,10 @@ dependencies {
     implementation(project(":normalization-java"))
 
     implementation(libs.groovy)
+    implementation(libs.groovyAnt)
+    implementation(libs.groovyJson)
+    implementation(libs.groovyTemplates)
+    implementation(libs.groovyXml)
     implementation(libs.ant)
     implementation(libs.guava)
     implementation(libs.inject)
@@ -106,6 +110,7 @@ dependencies {
     testFixturesImplementation(libs.slf4jApi)
     testFixturesImplementation(libs.guava)
     testFixturesImplementation(libs.ant)
+    testFixturesImplementation(libs.groovyAnt)
 
     testFixturesRuntimeOnly(project(":plugin-use")) {
         because("This is a core extension module (see DynamicModulesClassPathProvider.GRADLE_EXTENSION_MODULES)")

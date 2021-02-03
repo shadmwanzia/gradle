@@ -15,7 +15,7 @@
  */
 package org.gradle.api.internal.project.ant;
 
-import groovy.util.AntBuilder;
+import groovy.ant.AntBuilder;
 import org.apache.tools.ant.ComponentHelper;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Target;

@@ -63,7 +63,12 @@ dependencies {
         api(libs.googleHttpClientJackson2) { version { strictly(googleApiVersion) }}
         api(libs.googleOauthClient)     { version { strictly(googleApiVersion) }}
         api(libs.gradleProfiler)        { version { strictly("0.15.0") }}
-        api(libs.groovy)                { version { strictly("1.3-${libs.groovyVersion}"); because("emulating the Groovy 2.4-style groovy-all.jar, see https://github.com/gradle/gradle-groovy-all") }}
+        api(libs.groovy)                { version { strictly(libs.groovyVersion) }}
+        api(libs.groovyAnt)             { version { strictly(libs.groovyVersion) }}
+        api(libs.groovyDatetime)        { version { strictly(libs.groovyVersion) }}
+        api(libs.groovyJson)            { version { strictly(libs.groovyVersion) }}
+        api(libs.groovyTemplates)       { version { strictly(libs.groovyVersion) }}
+        api(libs.groovyXml)             { version { strictly(libs.groovyVersion) }}
         api(libs.gson)                  { version { strictly("2.8.5") }}
         api(libs.guava)                 { version { strictly("27.1-android"); because("JRE variant introduces regression - https://github.com/google/guava/issues/3223") }}
         api(libs.hamcrest)              { version { strictly("1.3") }}
@@ -141,6 +146,7 @@ dependencies {
         api(libs.cglib)                 { version { strictly("3.2.6") }}
         api(libs.equalsverifier)        { version { strictly("2.1.6") }}
         api(libs.flightrecorder)        { version { strictly("7.0.0-alpha01") }}
+        api(libs.groovyTest)            { version { strictly(libs.groovyVersion) }}
         api(libs.guice)                 { version { strictly("2.0") }}
         api(libs.httpmime)              { version { strictly("4.5.10") }}
         api(libs.jacksonKotlin)         { version { strictly("2.9.2") }}
@@ -159,8 +165,8 @@ dependencies {
         api(libs.mySqlConnector)        { version { strictly("8.0.17") }}
         api(libs.sampleCheck)           { version { strictly("0.12.6") }}
         api(libs.snappy)                { version { strictly("0.4") }}
-        api(libs.spock)                 { version { strictly("2.0-M4-groovy-2.5") }}
-        api(libs.spockJUnit4)           { version { strictly("2.0-M4-groovy-2.5") }}
+        api(libs.spock)                 { version { strictly("2.0-M4-groovy-3.0") }}
+        api(libs.spockJUnit4)           { version { strictly("2.0-M4-groovy-3.0") }}
         api(libs.sshdCore)              { version { strictly(sshdVersion) }}
         api(libs.sshdScp)               { version { strictly(sshdVersion) }}
         api(libs.sshdSftp)              { version { strictly(sshdVersion) }}

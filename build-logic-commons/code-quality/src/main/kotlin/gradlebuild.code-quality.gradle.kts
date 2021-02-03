@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import gradlebuild.classycle.tasks.Classycle
 import gradlebuild.classycle.extension.ClassycleExtension
+import gradlebuild.classycle.tasks.Classycle
 
 plugins {
     id("base")
@@ -131,9 +131,13 @@ abstract class CodeNarcRule : ComponentMetadataRule {
         context.details.allVariants {
             withDependencies {
                 removeAll { it.group == "org.codehaus.groovy" }
-                add("org.gradle.groovy:groovy-all") {
-                    version { prefer("1.3-" + groovy.lang.GroovySystem.getVersion()) }
-                    because("We use groovy-all everywhere")
+                add("org.codehaus.groovy:groovy") {
+                    version { prefer(groovy.lang.GroovySystem.getVersion()) }
+                    because("We use the packaged groovy")
+                }
+                add("org.codehaus.groovy:groovy-templates") {
+                    version { prefer(groovy.lang.GroovySystem.getVersion()) }
+                    because("We use the packaged groovy")
                 }
             }
         }

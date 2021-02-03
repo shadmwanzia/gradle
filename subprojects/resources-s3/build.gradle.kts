@@ -31,6 +31,7 @@ dependencies {
 
     integTestImplementation(project(":logging"))
     integTestImplementation(libs.commonsIo)
+    integTestImplementation(libs.groovyXml)
     integTestImplementation(libs.littleproxy)
     integTestImplementation(libs.jetty)
 

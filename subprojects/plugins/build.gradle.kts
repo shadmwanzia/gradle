@@ -29,6 +29,7 @@ dependencies {
 
     implementation(libs.slf4jApi)
     implementation(libs.groovy)
+    implementation(libs.groovyTemplates)
     implementation(libs.ant)
     implementation(libs.asm)
     implementation(libs.guava)

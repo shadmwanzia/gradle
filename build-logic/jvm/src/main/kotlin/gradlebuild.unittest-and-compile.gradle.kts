@@ -16,7 +16,6 @@
 
 import com.gradle.enterprise.gradleplugin.testdistribution.TestDistributionPlugin
 import gradlebuild.basics.BuildEnvironment
-import gradlebuild.basics.accessors.groovy
 import gradlebuild.basics.tasks.ClasspathManifest
 import gradlebuild.basics.testDistributionEnabled
 import gradlebuild.filterEnvironmentVariables
@@ -113,6 +112,10 @@ fun addDependencies() {
         testCompileOnly(libs.junit)
         testRuntimeOnly(libs.junit5Vintage)
         testImplementation(libs.groovy)
+        testImplementation(libs.groovyAnt)
+        testImplementation(libs.groovyJson)
+        testImplementation(libs.groovyTest)
+        testImplementation(libs.groovyXml)
         testImplementation(libs.spock)
         testImplementation(libs.junit5Vintage)
         testImplementation(libs.spockJUnit4)

@@ -24,6 +24,7 @@ dependencies {
     testFixturesApi(testFixtures(project(":core")))
     testFixturesImplementation(project(":internal-integ-testing"))
     testFixturesImplementation(libs.guava)
+    testFixturesImplementation(libs.groovyAnt)
 
     testImplementation(project(":process-services"))
     testImplementation(project(":file-collections"))

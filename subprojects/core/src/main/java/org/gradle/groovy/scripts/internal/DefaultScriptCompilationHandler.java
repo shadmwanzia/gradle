@@ -22,7 +22,7 @@ import groovy.lang.GroovyResourceLoader;
 import groovy.lang.Script;
 import org.codehaus.groovy.ast.ClassNode;
 import org.codehaus.groovy.ast.stmt.Statement;
-import org.codehaus.groovy.classgen.Verifier;
+import org.codehaus.groovy.classgen.GeneratorContext;
 import org.codehaus.groovy.control.CompilationFailedException;
 import org.codehaus.groovy.control.CompilationUnit;
 import org.codehaus.groovy.control.CompilerConfiguration;
@@ -218,7 +218,7 @@ public class DefaultScriptCompilationHandler implements ScriptCompilationHandler
         }
     }
 
-    private static class PackageStatementDetector extends CompilationUnit.SourceUnitOperation {
+    private static class PackageStatementDetector implements CompilationUnit.ISourceUnitOperation {
         private boolean hasPackageStatement;
 
         @Override
@@ -227,7 +227,7 @@ public class DefaultScriptCompilationHandler implements ScriptCompilationHandler
         }
     }
 
-    private static class EmptyScriptDetector extends CompilationUnit.SourceUnitOperation {
+    private static class EmptyScriptDetector implements CompilationUnit.ISourceUnitOperation {
         private boolean emptyScript;
         private boolean hasMethods;
 

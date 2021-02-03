@@ -41,6 +41,7 @@ dependencies {
     testImplementation(project(":diagnostics"))
     testImplementation(project(":build-cache-packaging"))
     testImplementation(libs.nekohtml)
+    testImplementation(libs.groovyXml)
     testImplementation(testFixtures(project(":core")))
     testImplementation(testFixtures(project(":messaging")))
     testImplementation(testFixtures(project(":core-api")))
@@ -53,6 +54,7 @@ dependencies {
     integTestImplementation(project(":build-option"))
     integTestImplementation(libs.jansi)
     integTestImplementation(libs.ansiControlSequenceUtil)
+    integTestImplementation(libs.groovyJson)
     integTestImplementation(testFixtures(project(":security")))
 
     testFixturesApi(project(":base-services")) {
@@ -71,6 +73,7 @@ dependencies {
     testFixturesImplementation(project(":internal-integ-testing"))
     testFixturesImplementation(libs.slf4jApi)
     testFixturesImplementation(libs.inject)
+    testFixturesImplementation(libs.groovyJson)
     testFixturesImplementation(libs.guava) {
         because("Groovy compiler reflects on private field on TextUtil")
     }

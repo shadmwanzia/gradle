@@ -1646,6 +1646,14 @@
             "member": "Constructor org.gradle.StartParameter(org.gradle.initialization.BuildLayoutParameters)",
             "acceptation": "Constructor required so subclasses can better control initialization.",
             "changes": []
+        },
+        {
+            "type": "org.gradle.api.AntBuilder",
+            "member": "Class org.gradle.api.AntBuilder",
+            "acceptation": "Moved to new Groovy version",
+            "changes": [
+                "Abstract method has been added in implemented interface"
+            ]
         }
     ]
 }

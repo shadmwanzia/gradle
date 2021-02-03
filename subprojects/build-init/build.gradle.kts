@@ -17,6 +17,7 @@ dependencies {
     implementation(project(":wrapper"))
 
     implementation(libs.groovy)
+    implementation(libs.groovyTemplates)
     implementation(libs.slf4jApi)
     implementation(libs.guava)
     implementation(libs.commonsLang)
