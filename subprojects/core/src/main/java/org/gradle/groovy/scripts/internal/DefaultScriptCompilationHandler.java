@@ -64,6 +64,7 @@ import java.security.CodeSource;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("deprecation")
 public class DefaultScriptCompilationHandler implements ScriptCompilationHandler {
     private final Logger logger = LoggerFactory.getLogger(DefaultScriptCompilationHandler.class);
     private static final NoOpGroovyResourceLoader NO_OP_GROOVY_RESOURCE_LOADER = new NoOpGroovyResourceLoader();

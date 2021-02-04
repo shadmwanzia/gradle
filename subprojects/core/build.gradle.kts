@@ -42,6 +42,7 @@ dependencies {
 
     implementation(libs.groovy)
     implementation(libs.groovyAnt)
+    implementation(libs.groovyDatetime)
     implementation(libs.groovyJson)
     implementation(libs.groovyTemplates)
     implementation(libs.groovyXml)
