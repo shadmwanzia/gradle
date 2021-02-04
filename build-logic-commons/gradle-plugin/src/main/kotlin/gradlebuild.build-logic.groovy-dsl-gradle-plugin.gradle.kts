@@ -29,7 +29,8 @@ dependencies {
     api(platform(project(":build-platform")))
     implementation("gradlebuild:code-quality")
 
-    implementation(localGroovy())
+    // TODO: [bm] workaround for dogfood
+    implementation("org.codehaus.groovy:groovy:3.0.7")
     testImplementation("org.spockframework:spock-core")
     testImplementation("org.spockframework:spock-junit4")
     testImplementation("net.bytebuddy:byte-buddy")
