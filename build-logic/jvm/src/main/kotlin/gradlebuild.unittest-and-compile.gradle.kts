@@ -16,6 +16,7 @@
 
 import com.gradle.enterprise.gradleplugin.testdistribution.TestDistributionPlugin
 import gradlebuild.basics.BuildEnvironment
+import gradlebuild.basics.accessors.groovy
 import gradlebuild.basics.tasks.ClasspathManifest
 import gradlebuild.basics.testDistributionEnabled
 import gradlebuild.filterEnvironmentVariables
