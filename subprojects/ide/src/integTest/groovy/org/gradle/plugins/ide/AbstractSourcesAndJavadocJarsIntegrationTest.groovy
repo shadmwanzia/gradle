@@ -482,7 +482,7 @@ dependencies {
 
     def givenGroovyAllExistsInGradleRepo() {
         def repo = mavenHttpRepo
-        def module = repo.module("org.codehaus.groovy", "groovy-al", groovyAllVersion)
+        def module = repo.module("org.codehaus.groovy", "groovy", groovyAllVersion)
         module.artifact(classifier: "sources")
         module.publish()
         module.allowAll()

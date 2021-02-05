@@ -134,7 +134,7 @@ class StrictVersionsInPlatformCentricDevelopmentIntegrationTest extends Abstract
         }
     }
 
-    static private String expectStrictVersion(platformType, String requiredVersion, String rejectedVersions = '') {
+    static String expectStrictVersion(platformType, String requiredVersion, String rejectedVersions = '') {
         boolean strictVersion = platformType != ENFORCED_PLATFORM
         if (strictVersion && rejectedVersions.isEmpty()) {
             return "{strictly $requiredVersion}"
