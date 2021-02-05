@@ -16,10 +16,10 @@
 
 tasks.registerEarlyFeedbackLifecycleTasks()
 tasks.named("quickTest") {
-//    dependsOn("test")
+    dependsOn("test")
 }
 tasks.named("platformTest") {
-//    dependsOn("test")
+    dependsOn("test")
 }
 tasks.configureCIIntegrationTestDistributionLifecycleTasks()
 tasks.configureCICrossVersionTestDistributionLifecycleTasks()
@@ -45,48 +45,48 @@ fun TaskContainer.registerEarlyFeedbackLifecycleTasks() {
 
 fun TaskContainer.configureCIIntegrationTestDistributionLifecycleTasks() {
     named("quickTest") {
-//        dependsOn("embeddedIntegTest")
+        dependsOn("embeddedIntegTest")
     }
 
     named("platformTest") {
-//        dependsOn("forkingIntegTest")
+        dependsOn("forkingIntegTest")
     }
 
     named("allVersionsIntegMultiVersionTest") {
-//        dependsOn("integMultiVersionTest")
+        dependsOn("integMultiVersionTest")
     }
 
     named("parallelTest") {
-//        dependsOn("parallelIntegTest")
+        dependsOn("parallelIntegTest")
     }
 
     named("noDaemonTest") {
-//        dependsOn("noDaemonIntegTest")
+        dependsOn("noDaemonIntegTest")
     }
 
     named("configCacheTest") {
-//        dependsOn("configCacheIntegTest")
+        dependsOn("configCacheIntegTest")
     }
 
     named("forceRealizeDependencyManagementTest") {
-//        dependsOn("integForceRealizeTest")
+        dependsOn("integForceRealizeTest")
     }
 }
 
 fun TaskContainer.configureCICrossVersionTestDistributionLifecycleTasks() {
     named("quickTest") {
-//        dependsOn("embeddedCrossVersionTest")
+        dependsOn("embeddedCrossVersionTest")
     }
 
     named("platformTest") {
-//        dependsOn("forkingCrossVersionTest")
+        dependsOn("forkingCrossVersionTest")
     }
 
     named("quickFeedbackCrossVersionTest") {
-//        dependsOn("quickFeedbackCrossVersionTests")
+        dependsOn("quickFeedbackCrossVersionTests")
     }
 
     named("allVersionsCrossVersionTest") {
-//        dependsOn("allVersionsCrossVersionTests")
+        dependsOn("allVersionsCrossVersionTests")
     }
 }

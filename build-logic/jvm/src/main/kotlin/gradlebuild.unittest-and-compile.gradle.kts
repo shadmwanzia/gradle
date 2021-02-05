@@ -209,7 +209,6 @@ fun configureTests() {
     fun Test.isUnitTest() = listOf("test", "writePerformanceScenarioDefinitions", "writeTmpPerformanceScenarioDefinitions").contains(name)
 
     tasks.withType<Test>().configureEach {
-        enabled = false
         filterEnvironmentVariables()
 
         maxParallelForks = project.maxParallelForks
