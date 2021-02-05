@@ -57,7 +57,7 @@ class MaxWorkersTest extends ConcurrentSpec {
                     queue.add(new DefaultBuildOperationQueueTest.TestBuildOperation() {
                         @Override
                         void run(BuildOperationContext buildOperationContext) {
-                            instant.worker2
+                            ConcurrentSpec.instant.worker2
                         }
                     })
                 })

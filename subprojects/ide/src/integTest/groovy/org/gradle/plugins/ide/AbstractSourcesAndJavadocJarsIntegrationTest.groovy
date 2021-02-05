@@ -374,7 +374,7 @@ dependencies {
         succeeds ideTask
 
         then:
-        ideFileContainsEntry("groovy-all-${groovyAllVersion}.jar", ["groovy-all-${groovyAllVersion}-sources.jar"], [])
+        ideFileContainsEntry("groovy-${groovyAllVersion}.jar", ["groovy-${groovyAllVersion}-sources.jar"], [])
     }
 
     @ToBeFixedForConfigurationCache
@@ -397,7 +397,7 @@ dependencies {
         succeeds ideTask
 
         then:
-        ideFileContainsEntry("groovy-all-${groovyAllVersion}.jar", ["groovy-all-${groovyAllVersion}-sources.jar"], [])
+        ideFileContainsEntry("groovy-${groovyAllVersion}.jar", ["groovy-${groovyAllVersion}-sources.jar"], [])
     }
 
     @ToBeFixedForConfigurationCache
@@ -421,7 +421,7 @@ dependencies {
         succeeds ideTask
 
         then:
-        ideFileContainsEntry("groovy-all-${groovyAllVersion}.jar", ["groovy-all-${groovyAllVersion}-sources.jar"], [])
+        ideFileContainsEntry("groovy-${groovyAllVersion}.jar", ["groovy-${groovyAllVersion}-sources.jar"], [])
     }
 
     @ToBeFixedForConfigurationCache
@@ -482,7 +482,7 @@ dependencies {
 
     def givenGroovyAllExistsInGradleRepo() {
         def repo = mavenHttpRepo
-        def module = repo.module("org.gradle.groovy", "groovy-all", groovyAllVersion)
+        def module = repo.module("org.codehaus.groovy", "groovy-al", groovyAllVersion)
         module.artifact(classifier: "sources")
         module.publish()
         module.allowAll()

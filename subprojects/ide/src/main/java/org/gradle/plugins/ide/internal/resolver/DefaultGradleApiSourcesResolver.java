@@ -41,7 +41,7 @@ public class DefaultGradleApiSourcesResolver implements GradleApiSourcesResolver
 
     @Override
     public File resolveLocalGroovySources(String jarName) {
-        String version = jarName.replace("groovy-all-", "").replace(".jar", "");
+        String version = jarName.replace("groovy-", "").replace(".jar", "");
 
         MavenArtifactRepository repository = addGradleLibsRepository();
         try {
@@ -53,7 +53,7 @@ public class DefaultGradleApiSourcesResolver implements GradleApiSourcesResolver
 
     private File downloadLocalGroovySources(String version) {
         ArtifactResolutionResult result = project.getDependencies().createArtifactResolutionQuery()
-            .forModule("org.gradle.groovy", "groovy-all", version)
+            .forModule("org.gradle.groovy", "groovy", version)
             .withArtifacts(JvmLibrary.class, Collections.singletonList(SourcesArtifact.class))
             .execute();
 

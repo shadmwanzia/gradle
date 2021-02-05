@@ -24,7 +24,7 @@ import static org.gradle.nativeplatform.fixtures.app.SourceFileElement.*
  * An app that uses a library with 2 dependencies, one an API dependency and the other an implementation dependency.
  */
 class CppAppWithLibrariesWithApiDependencies implements AppElement {
-    def main = new SourceFileElement() {
+    final SourceFileElement main = new SourceFileElement() {
         final SourceFile sourceFile = sourceFile("cpp", "main.cpp", """
 #include <iostream>
 #include "deck.h"
@@ -39,7 +39,7 @@ int main() {
 """)
     }
 
-    def deck = new CppSourceFileElement() {
+    final CppSourceFileElement deck = new CppSourceFileElement() {
         final SourceFileElement header = ofFile(sourceFile("public", "deck.h", """
 #include "card.h"
 #ifdef _WIN32
