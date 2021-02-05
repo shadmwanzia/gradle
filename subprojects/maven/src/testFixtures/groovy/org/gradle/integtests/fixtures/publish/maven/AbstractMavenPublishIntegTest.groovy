@@ -64,12 +64,12 @@ abstract class AbstractMavenPublishIntegTest extends AbstractIntegrationSpec imp
         }
     }
 
-    private def doResolveArtifacts(ResolveParams params) {
+    def doResolveArtifacts(ResolveParams params) {
         // Replace the existing buildfile with one for resolving the published module
         settingsFile.text = "rootProject.name = 'resolve'"
         def attributes = params.variant == null ?
             "" :
-            """ 
+            """
     attributes {
         attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.class, Usage.${params.variant}))
     }
@@ -113,7 +113,7 @@ abstract class AbstractMavenPublishIntegTest extends AbstractIntegrationSpec imp
                 }
             }
             repositories {
-                maven { 
+                maven {
                     url "${mavenRepo.uri}"
                     metadataSources {
                         ${params.resolveModuleMetadata?'gradleMetadata':'mavenPom'}()

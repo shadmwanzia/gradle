@@ -27,6 +27,7 @@ dependencies {
 
     testImplementation(testFixtures(project(":core")))
     testImplementation(testFixtures(project(":testing-jvm")))
+    testImplementation(libs.groovyDatetime)
 
     integTestImplementation(libs.ansiControlSequenceUtil)
 
