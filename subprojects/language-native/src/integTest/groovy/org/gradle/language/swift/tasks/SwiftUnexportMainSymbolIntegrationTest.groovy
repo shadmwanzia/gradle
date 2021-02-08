@@ -55,7 +55,7 @@ class SwiftUnexportMainSymbolIntegrationTest extends AbstractUnexportMainSymbolI
     @Override
     protected SourceFileElement getOtherFile() {
         return new SourceFileElement() {
-            final SourceFile sourceFile = sourceFile("swift", "other.swift", 'class Other {}')
+            final SourceFile sourceFile = new SourceFile("swift", "other.swift", 'class Other {}')
         }
     }
 
