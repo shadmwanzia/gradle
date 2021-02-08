@@ -87,6 +87,7 @@ public class GroovyRuntime {
             @Override
             public FileCollection createDelegate() {
                 GroovyJarFile groovyJar = findGroovyJarFile(classpath);
+
                 if (groovyJar == null) {
                     throw new GradleException(String.format("Cannot infer Groovy class path because no Groovy Jar was found on class path: %s", Iterables.toString(classpath)));
                 }

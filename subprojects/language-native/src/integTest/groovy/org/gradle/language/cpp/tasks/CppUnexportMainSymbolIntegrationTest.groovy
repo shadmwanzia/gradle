@@ -129,7 +129,7 @@ class CppUnexportMainSymbolIntegrationTest extends AbstractUnexportMainSymbolInt
     @Override
     protected SourceFileElement getMainFile(String filenameWithoutExtension) {
         return new SourceFileElement() {
-            final SourceFile sourceFile = sourceFile("cpp", "${filenameWithoutExtension}.cpp", """
+            final SourceFile sourceFile = new SourceFile("cpp", "${filenameWithoutExtension}.cpp", """
             #include <iostream>
 
             int main(int argc, char* argv[]) {

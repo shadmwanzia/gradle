@@ -38,7 +38,7 @@ abstract class AbstractIvyPublishIntegTest extends AbstractIntegrationSpec imple
     }
 
     void resolveArtifacts(Object dependencyNotation, @DelegatesTo(value = IvyArtifactResolutionExpectation, strategy = Closure.DELEGATE_FIRST) Closure<?> expectationSpec) {
-        IvyArtifactResolutionExpectation expectation = new IvyArtifactResolutionExpectation(dependencyNotation)
+        IvyArtifactResolutionExpectation expectation = new IvyArtifactResolutionExpectation(dependencyNotation, this)
         expectation.dependency = convertDependencyNotation(dependencyNotation)
         expectationSpec.resolveStrategy = Closure.DELEGATE_FIRST
         expectationSpec.delegate = expectation
@@ -160,7 +160,7 @@ abstract class AbstractIvyPublishIntegTest extends AbstractIntegrationSpec imple
 
     class IvyArtifactResolutionExpectation extends ResolveParams implements ArtifactResolutionExpectationSpec<IvyModule> {
 
-        IvyArtifactResolutionExpectation(Object dependencyNotation) {
+        IvyArtifactResolutionExpectation(Object dependencyNotation, AbstractIvyPublishIntegTest test) {
             if (dependencyNotation instanceof IvyModule) {
                 module = dependencyNotation
             }
