@@ -38,7 +38,7 @@ abstract class AbstractMavenPublishIntegTest extends AbstractIntegrationSpec imp
     }
 
     void resolveArtifacts(Object dependencyNotation, @DelegatesTo(value = MavenArtifactResolutionExpectation, strategy = Closure.DELEGATE_FIRST) Closure<?> expectationSpec) {
-        MavenArtifactResolutionExpectation expectation = new MavenArtifactResolutionExpectation(dependencyNotation)
+        MavenArtifactResolutionExpectation expectation = new MavenArtifactResolutionExpectation(dependencyNotation, this)
         expectation.dependency = convertDependencyNotation(dependencyNotation)
         expectationSpec.resolveStrategy = Closure.DELEGATE_FIRST
         expectationSpec.delegate = expectation
@@ -161,7 +161,10 @@ abstract class AbstractMavenPublishIntegTest extends AbstractIntegrationSpec imp
 
     class MavenArtifactResolutionExpectation extends ResolveParams implements ArtifactResolutionExpectationSpec<MavenModule> {
 
-        MavenArtifactResolutionExpectation(Object dependencyNotation) {
+        private final AbstractMavenPublishIntegTest test
+
+        MavenArtifactResolutionExpectation(Object dependencyNotation, AbstractMavenPublishIntegTest test) {
+            this.test = test
             if (dependencyNotation instanceof MavenModule) {
                 module = dependencyNotation
             }
@@ -190,7 +193,7 @@ abstract class AbstractMavenPublishIntegTest extends AbstractIntegrationSpec imp
                 optionalFeatureCapabilities: optionalFeatureCapabilities,
             )
             println "Checking ${additionalArtifacts?'additional artifacts':'artifacts'} when resolving ${withModuleMetadata?'with':'without'} Gradle module metadata"
-            def resolutionResult = doResolveArtifacts(params)
+            def resolutionResult = test.doResolveArtifacts(params)
             expectationSpec.with {
                 if (expectSuccess) {
                     assert resolutionResult == expectedFileNames

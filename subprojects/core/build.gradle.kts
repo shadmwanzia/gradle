@@ -59,6 +59,9 @@ dependencies {
     implementation(libs.commonsCompress)
     implementation(libs.xmlApis)
     implementation(libs.tomlj)
+    implementation(libs.javaParser) {
+        because("The Groovy compiler inspects the dependencies at compile time")
+    }
 
     testImplementation(project(":plugins"))
     testImplementation(project(":testing-base"))

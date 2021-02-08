@@ -66,6 +66,8 @@ dependencies {
         api(libs.groovy)                { version { strictly(libs.groovyVersion) }}
         api(libs.groovyAnt)             { version { strictly(libs.groovyVersion) }}
         api(libs.groovyDatetime)        { version { strictly(libs.groovyVersion) }}
+        api(libs.groovyDateUtil)        { version { strictly(libs.groovyVersion) }}
+        api(libs.groovyDoc)             { version { strictly(libs.groovyVersion) }}
         api(libs.groovyJson)            { version { strictly(libs.groovyVersion) }}
         api(libs.groovyTemplates)       { version { strictly(libs.groovyVersion) }}
         api(libs.groovyXml)             { version { strictly(libs.groovyVersion) }}

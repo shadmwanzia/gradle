@@ -53,7 +53,7 @@ public class DefaultGradleApiSourcesResolver implements GradleApiSourcesResolver
 
     private File downloadLocalGroovySources(String version) {
         ArtifactResolutionResult result = project.getDependencies().createArtifactResolutionQuery()
-            .forModule("org.gradle.groovy", "groovy", version)
+            .forModule("org.codehaus.groovy", "groovy", version)
             .withArtifacts(JvmLibrary.class, Collections.singletonList(SourcesArtifact.class))
             .execute();
 
