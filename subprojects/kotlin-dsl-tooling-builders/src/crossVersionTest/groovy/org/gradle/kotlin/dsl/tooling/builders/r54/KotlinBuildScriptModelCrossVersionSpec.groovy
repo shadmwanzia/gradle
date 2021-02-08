@@ -84,7 +84,8 @@ class KotlinBuildScriptModelCrossVersionSpec extends AbstractKotlinScriptModelCr
 
         expect:
         assertClassPathContains(
-            super.file("classes.jar")
+            canonicalClassPath(),
+            file("classes.jar")
         )
     }
 
