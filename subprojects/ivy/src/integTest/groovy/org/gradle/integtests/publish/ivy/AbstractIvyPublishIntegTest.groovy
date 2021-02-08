@@ -160,7 +160,10 @@ abstract class AbstractIvyPublishIntegTest extends AbstractIntegrationSpec imple
 
     class IvyArtifactResolutionExpectation extends ResolveParams implements ArtifactResolutionExpectationSpec<IvyModule> {
 
+        private final AbstractIvyPublishIntegTest test
+
         IvyArtifactResolutionExpectation(Object dependencyNotation, AbstractIvyPublishIntegTest test) {
+            this.test = test
             if (dependencyNotation instanceof IvyModule) {
                 module = dependencyNotation
             }
@@ -189,7 +192,7 @@ abstract class AbstractIvyPublishIntegTest extends AbstractIntegrationSpec imple
                 optionalFeatureCapabilities: optionalFeatureCapabilities,
             )
             println "Checking ${additionalArtifacts?'additional artifacts':'artifacts'} when resolving ${withModuleMetadata?'with':'without'} Gradle module metadata"
-            def resolutionResult = doResolveArtifacts(params)
+            def resolutionResult = test.doResolveArtifacts(params)
             expectationSpec.with {
                 if (expectSuccess) {
                     assert resolutionResult == expectedFileNames

@@ -16,7 +16,6 @@
 
 package org.gradle.internal.lazy
 
-import org.junit.Ignore
 import spock.lang.Specification
 import spock.lang.Unroll
 

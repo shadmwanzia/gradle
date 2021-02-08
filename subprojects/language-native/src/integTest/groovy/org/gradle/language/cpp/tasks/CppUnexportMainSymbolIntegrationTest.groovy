@@ -73,7 +73,7 @@ class CppUnexportMainSymbolIntegrationTest extends AbstractUnexportMainSymbolInt
 
     protected SourceFileElement mainFile = getMainFile()
     protected SourceFileElement alternateMainFile = new SourceFileElement() {
-        final SourceFile sourceFile = sourceFile("cpp", "main.cpp", """
+        final SourceFile sourceFile = new SourceFile("cpp", "main.cpp", """
             #include <iostream>
 
             int main(int argc, char* argv[]) {

@@ -49,7 +49,7 @@ class SwiftUnexportMainSymbolIntegrationTest extends AbstractUnexportMainSymbolI
 
     protected SourceFileElement mainFile = getMainFile()
     protected SourceFileElement alternateFile = new SourceFileElement() {
-        final SourceFile sourceFile = sourceFile("swift", "main.swift", 'print("goodbye world!")')
+        final SourceFile sourceFile = new SourceFile("swift", "main.swift", 'print("goodbye world!")')
     }
 
     @Override
