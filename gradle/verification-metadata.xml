@@ -25,6 +25,7 @@
          <trusted-key id="21f0942275ea159a501d375328852008a47bb995" group="^com[.]google($|([.].*))" regex="true"/>
          <trusted-key id="2be67ac00d699e04e840b7fe29967e804d85663f" group="org.scala-sbt"/>
          <trusted-key id="7faa0f2206de228f0db01ad741321490758aad6f" group="org.codehaus.groovy"/>
+         <trusted-key id="31fae244a81d64507b47182e1b2718089ce964b8" group="com.thoughtworks.qdox"/>
          <trusted-key id="2db4f1ef0fa761ecc4ea935c86fdc7e2a11262cb">
             <trusting group="commons-codec"/>
             <trusting group="org.apache.commons"/>
