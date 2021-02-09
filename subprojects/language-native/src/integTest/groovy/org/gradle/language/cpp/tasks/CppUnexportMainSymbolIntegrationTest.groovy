@@ -86,7 +86,7 @@ class CppUnexportMainSymbolIntegrationTest extends AbstractUnexportMainSymbolInt
     @Override
     protected SourceFileElement getOtherFile() {
         return new SourceFileElement() {
-            final SourceFile sourceFile = sourceFile("cpp", "other.cpp", """
+            final SourceFile sourceFile = new SourceFile("cpp", "other.cpp", """
             class Other {};
         """)
         }

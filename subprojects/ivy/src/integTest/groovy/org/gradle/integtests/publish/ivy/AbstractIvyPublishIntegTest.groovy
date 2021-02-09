@@ -38,7 +38,7 @@ abstract class AbstractIvyPublishIntegTest extends AbstractIntegrationSpec imple
     }
 
     void resolveArtifacts(Object dependencyNotation, @DelegatesTo(value = IvyArtifactResolutionExpectation, strategy = Closure.DELEGATE_FIRST) Closure<?> expectationSpec) {
-        IvyArtifactResolutionExpectation expectation = new IvyArtifactResolutionExpectation(dependencyNotation, this)
+        IvyArtifactResolutionExpectation expectation = new IvyArtifactResolutionExpectation(dependencyNotation)
         expectation.dependency = convertDependencyNotation(dependencyNotation)
         expectationSpec.resolveStrategy = Closure.DELEGATE_FIRST
         expectationSpec.delegate = expectation
@@ -64,7 +64,7 @@ abstract class AbstractIvyPublishIntegTest extends AbstractIntegrationSpec imple
         }
     }
 
-    private def doResolveArtifacts(ResolveParams params) {
+    def doResolveArtifacts(ResolveParams params) {
         // Replace the existing buildfile with one for resolving the published module
         settingsFile.text = "rootProject.name = 'resolve'"
         def attributes = params.variant == null ?
@@ -162,8 +162,7 @@ abstract class AbstractIvyPublishIntegTest extends AbstractIntegrationSpec imple
 
         private final AbstractIvyPublishIntegTest test
 
-        IvyArtifactResolutionExpectation(Object dependencyNotation, AbstractIvyPublishIntegTest test) {
-            this.test = test
+        IvyArtifactResolutionExpectation(Object dependencyNotation) {
             if (dependencyNotation instanceof IvyModule) {
                 module = dependencyNotation
             }
@@ -192,7 +191,7 @@ abstract class AbstractIvyPublishIntegTest extends AbstractIntegrationSpec imple
                 optionalFeatureCapabilities: optionalFeatureCapabilities,
             )
             println "Checking ${additionalArtifacts?'additional artifacts':'artifacts'} when resolving ${withModuleMetadata?'with':'without'} Gradle module metadata"
-            def resolutionResult = test.doResolveArtifacts(params)
+            def resolutionResult = AbstractIvyPublishIntegTest.this.doResolveArtifacts(params)
             expectationSpec.with {
                 if (expectSuccess) {
                     assert resolutionResult == expectedFileNames
