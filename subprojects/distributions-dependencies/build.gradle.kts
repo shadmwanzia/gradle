@@ -70,6 +70,7 @@ dependencies {
         api(libs.groovyDoc)             { version { strictly(libs.groovyVersion) }}
         api(libs.groovyJson)            { version { strictly(libs.groovyVersion) }}
         api(libs.groovyTemplates)       { version { strictly(libs.groovyVersion) }}
+        api(libs.groovyTest)            { version { strictly(libs.groovyVersion) }}
         api(libs.groovyXml)             { version { strictly(libs.groovyVersion) }}
         api(libs.gson)                  { version { strictly("2.8.5") }}
         api(libs.guava)                 { version { strictly("27.1-android"); because("JRE variant introduces regression - https://github.com/google/guava/issues/3223") }}

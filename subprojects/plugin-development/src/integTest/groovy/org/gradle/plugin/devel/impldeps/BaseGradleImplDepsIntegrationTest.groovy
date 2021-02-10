@@ -67,7 +67,7 @@ abstract class BaseGradleImplDepsIntegrationTest extends AbstractIntegrationSpec
     static String spockDependency() {
         """
             dependencies {
-                testImplementation('org.spockframework:spock-core:1.2-groovy-2.5') {
+                testImplementation('org.spockframework:spock-core:2.0-M4-groovy-3.0') {
                     exclude module: 'groovy-all'
                 }
             }

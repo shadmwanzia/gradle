@@ -16,9 +16,7 @@
 package org.gradle.integtests
 
 import org.gradle.integtests.fixtures.AbstractIntegrationSpec
-import spock.lang.Ignore
 
-@Ignore("TODO: BM to be fixed as part of Groovy3 upgrade")
 class IncrementalGroovyProjectBuildIntegrationTest extends AbstractIntegrationSpec {
 
     def "does not rebuild Groovydoc if source has not changed"() {
