@@ -25,53 +25,52 @@ import java.util.function.Supplier
 
 class LazyTest extends Specification {
 
-//        "NEEDS FIXING FOR GROOVY 3
-//    @Unroll
-//    def "supplier code is executed once"() {
-//        def supplier = Mock(Supplier)
-//
-//        when:
-//        def lazy = lazyFactory(supplier)
-//
-//        then:
-//        0 * supplier._
-//
-//        when:
-//        lazy.get()
-//
-//        then:
-//        1 * supplier.get() >> 123
-//
-//        when:
-//        lazy.get()
-//
-//        then:
-//        0 * supplier.get()
-//
-//        when:
-//        lazy.use {
-//            assert it == result
-//        }
-//
-//        then:
-//        noExceptionThrown()
-//
-//        when:
-//        def val = lazy.apply {
-//            3 * it
-//        }
-//
-//        then:
-//        0 * supplier.get()
-//        val == 3 * result
-//
-//        where:
-//        lazyFactory                                             | result
-//        { s -> Lazy.unsafe().of({s as Integer})  }              | 123
-//        { s -> Lazy.unsafe().of({ s as Integer }).map { 2 * it } }  | 246
-//        { s -> Lazy.locking().of({ s as Integer }) }               | 123
-//        { s -> Lazy.locking().of({ s as Integer }).map { 2 * it } } | 246
-//    }
+    @Unroll
+    def "supplier code is executed once"() {
+        def supplier = Mock(Supplier)
+
+        when:
+        def lazy = factory(supplier)
+
+        then:
+        0 * supplier._
+
+        when:
+        lazy.get()
+
+        then:
+        1 * supplier.get() >> 123
+
+        when:
+        lazy.get()
+
+        then:
+        0 * supplier.get()
+
+        when:
+        lazy.use {
+            assert it == expected
+        }
+
+        then:
+        noExceptionThrown()
+
+        when:
+        def val = lazy.apply {
+            3 * it
+        }
+
+        then:
+        0 * supplier.get()
+        val == 3 * expected
+
+        where:
+        factory                                                  | expected
+        asClosure { s -> Lazy.unsafe().of(s as Supplier) }                 | 123
+        asClosure { s -> Lazy.unsafe().of(s as Supplier).map { 2 * it } }  | 246
+        asClosure { s -> Lazy.locking().of(s as Supplier) }                | 123
+        asClosure { s -> Lazy.locking().of(s as Supplier).map { 2 * it } } | 246
+    }
 
     @Unroll
     def "lazy can handle concurrent threads (#factoryName)"() {
@@ -121,4 +120,7 @@ class LazyTest extends Specification {
         'synchronized'  | Lazy.synchronizing()
     }
 
+    Closure asClosure(Closure<Lazy<Object>> lazyClosure) {
+        return lazyClosure
+    }
 }
