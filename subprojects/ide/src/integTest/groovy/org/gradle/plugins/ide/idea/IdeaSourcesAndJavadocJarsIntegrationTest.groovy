@@ -20,7 +20,6 @@ import org.gradle.plugins.ide.fixtures.IdeaModuleFixture
 import org.gradle.test.fixtures.server.http.HttpArtifact
 import spock.lang.Ignore
 
-@Ignore("TODO: BM to be fixed as part of Groovy3 upgrade")
 class IdeaSourcesAndJavadocJarsIntegrationTest extends AbstractSourcesAndJavadocJarsIntegrationTest {
     @Override
     String getIdeTask() {
@@ -30,7 +29,7 @@ class IdeaSourcesAndJavadocJarsIntegrationTest extends AbstractSourcesAndJavadoc
     void ideFileContainsEntry(String jar, List<String> sources, List<String> javadocs) {
         IdeaModuleFixture iml =  parseIml("root.iml")
         def libraryEntry = iml.dependencies.libraries.find { it.jarName == jar }
-        assert libraryEntry != null : "entry for jar ${jar} not found"
+        assert libraryEntry != null : "entry for jar ${jar} not found, found entries: ${iml.dependencies.libraries.collect({it.jarName})}"
         libraryEntry.assertHasSource(sources)
         libraryEntry.assertHasJavadoc(javadocs)
     }

@@ -375,6 +375,13 @@ dependencies {
 
         then:
         ideFileContainsEntry("groovy-${groovyVersion}.jar", ["groovy-${groovyVersion}-sources.jar"], [])
+        ideFileContainsEntry("groovy-ant-${groovyVersion}.jar", ["groovy-ant-${groovyVersion}-sources.jar"], [])
+        ideFileContainsEntry("groovy-groovydoc-${groovyVersion}.jar", ["groovy-groovydoc-${groovyVersion}-sources.jar"], [])
+        ideFileContainsEntry("groovy-datetime-${groovyVersion}.jar", ["groovy-datetime-${groovyVersion}-sources.jar"], [])
+        ideFileContainsEntry("groovy-json-${groovyVersion}.jar", ["groovy-json-${groovyVersion}-sources.jar"], [])
+        ideFileContainsEntry("groovy-test-${groovyVersion}.jar", ["groovy-test-${groovyVersion}-sources.jar"], [])
+        ideFileContainsEntry("groovy-templates-${groovyVersion}.jar", ["groovy-templates-${groovyVersion}-sources.jar"], [])
+        ideFileContainsEntry("groovy-xml-${groovyVersion}.jar", ["groovy-xml-${groovyVersion}-sources.jar"], [])
     }
 
     @ToBeFixedForConfigurationCache
@@ -484,9 +491,11 @@ dependencies {
         def repo = mavenHttpRepo
         publishGroovyModuleWithSources(repo, "groovy")
         publishGroovyModuleWithSources(repo, "groovy-ant")
+        publishGroovyModuleWithSources(repo, "groovy-docgenerator")
         publishGroovyModuleWithSources(repo, "groovy-groovydoc")
         publishGroovyModuleWithSources(repo, "groovy-datetime")
         publishGroovyModuleWithSources(repo, "groovy-json")
+        publishGroovyModuleWithSources(repo, "groovy-test")
         publishGroovyModuleWithSources(repo, "groovy-templates")
         publishGroovyModuleWithSources(repo, "groovy-xml")
         return repo
