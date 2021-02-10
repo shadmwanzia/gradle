@@ -17,7 +17,6 @@
 package org.gradle.api.plugins.quality.codenarc
 
 import org.gradle.integtests.fixtures.AbstractIntegrationSpec
-import spock.lang.Ignore
 
 class CodeNarcCompilationClasspathIntegrationTest extends AbstractIntegrationSpec {
 
@@ -25,7 +24,6 @@ class CodeNarcCompilationClasspathIntegrationTest extends AbstractIntegrationSpe
     private final static String SUPPORTED_COMPILATION_CLASSPATH_VERSION = '0.27.0'
     private final static String UNSUPPORTED_COMPILATION_CLASSPATH_VERSION = '0.26.0'
 
-    @Ignore("TODO: BM to be fixed as part of Groovy3 upgrade")
     def "compilation classpath can be specified for a CodeNarc task"() {
         given:
         buildFileWithCodeNarcAndCompilationClasspath(SUPPORTED_COMPILATION_CLASSPATH_VERSION)
@@ -84,7 +82,7 @@ class CodeNarcCompilationClasspathIntegrationTest extends AbstractIntegrationSpe
 
     private void codeViolatingCloneWithoutCloneableRule() {
         file('src/main/groovy/ViolatingClass.groovy') << '''
-            class ViolatingClass extends Tuple {
+            class ViolatingClass {
                 ViolatingClass clone() {}
             }
         '''
