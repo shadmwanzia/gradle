@@ -152,7 +152,7 @@ dependencies {
         api(libs.guice)                 { version { strictly("2.0") }}
         api(libs.httpmime)              { version { strictly("4.5.10") }}
         api(libs.jacksonKotlin)         { version { strictly("2.9.2") }}
-        api(libs.javaParser)            { version { strictly("3.1.3") }}
+        api(libs.javaParser)            { version { strictly("3.17.0") }}
         api(libs.jetty)                 { version { strictly(jettyVersion) }}
         api(libs.jettySecurity)         { version { strictly(jettyVersion) }}
         api(libs.jettyWebApp)           { version { strictly(jettyVersion) }}
