@@ -39,8 +39,14 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
+import static java.lang.String.format;
+import static java.util.Collections.newSetFromMap;
 
 class InstrumentingClasspathFileTransformer implements ClasspathFileTransformer {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(InstrumentingClasspathFileTransformer.class);
 
     private final ClasspathWalker classpathWalker;
@@ -63,23 +69,33 @@ class InstrumentingClasspathFileTransformer implements ClasspathFileTransformer 
         HashCode fileHash = hashOf(sourceSnapshot);
         String destFileName = fileHash.toString() + '/' + name;
         File transformed = new File(cacheDir, destFileName);
-        if (!transformed.isFile()) {
-            try {
-                transform(source, transformed);
-            } catch (GradleException e) {
-                if (e.getCause() instanceof FileAlreadyExistsException) {
-                    // Mostly harmless race-condition, a concurrent writer has already started writing to the file.
-                    // We run identical transforms concurrently and we can sometimes finish two transforms at the same
-                    // time in a way that Files.move (see [ClasspathBuilder.jar]) will see [transformed] created before
-                    // the move is done.
-                    LOGGER.debug("Instrumented classpath file '{}' already exists.", destFileName, e);
-                } else {
-                    throw e;
-                }
+        if (transformed.isFile()) {
+            if (INSTRUMENTING.contains(transformed)) {
+                throw new GradleException(format("Instrumented classpath file '{}' is not ready.", destFileName));
             }
+            return transformed;
+        }
+
+        INSTRUMENTING.add(transformed);
+        try {
+            transform(source, transformed);
+        } catch (GradleException e) {
+            if (e.getCause() instanceof FileAlreadyExistsException) {
+                // Mostly harmless race-condition, a concurrent writer has already started writing to the file.
+                // We run identical transforms concurrently and we can sometimes finish two transforms at the same
+                // time in a way that Files.move (see [ClasspathBuilder.jar]) will see [transformed] created before
+                // the move is done.
+                LOGGER.debug("Instrumented classpath file '{}' already exists.", destFileName, e);
+            } else {
+                throw e;
+            }
+        } finally {
+            INSTRUMENTING.remove(transformed);
         }
         return transformed;
     }
+
+    private static final Set<File> INSTRUMENTING = newSetFromMap(new ConcurrentHashMap<>());
 
     private HashCode hashOf(FileSystemLocationSnapshot sourceSnapshot) {
         Hasher hasher = Hashing.defaultFunction().newHasher();
