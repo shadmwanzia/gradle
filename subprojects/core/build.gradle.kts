@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.groovyJson)
     implementation(libs.groovyDoc)
     implementation(libs.groovyTemplates)
+    implementation(libs.groovyTest)
     implementation(libs.groovyXml)
     implementation(libs.ant)
     implementation(libs.guava)
