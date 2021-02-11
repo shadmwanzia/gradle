@@ -89,8 +89,8 @@ class TestSpec extends Specification {
             ${mavenCentralRepository()}
 
 dependencies {
-    testImplementation 'org.codehaus.groovy:groovy:2.5.12'
-    testImplementation '$dependencyNotation', 'org.spockframework:spock-core:1.0-groovy-2.4@jar'
+    testImplementation 'org.codehaus.groovy:groovy:3.0.7'
+    testImplementation '$dependencyNotation', 'org.spockframework:spock-core:2.0-M4-groovy-3.0@jar'
 }
 """
     }
