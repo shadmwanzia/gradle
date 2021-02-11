@@ -87,7 +87,14 @@ public class DefaultCachedClasspathTransformer implements CachedClasspathTransfo
         if (classPath.isEmpty()) {
             return classPath;
         }
-        return transformFiles(classPath, new InstrumentingClasspathFileTransformer(classpathWalker, classpathBuilder, new CompositeTransformer(additional, transformerFor(transform))));
+        return transformFiles(
+            classPath,
+            new InstrumentingClasspathFileTransformer(
+                classpathWalker,
+                classpathBuilder,
+                new CompositeTransformer(additional, transformerFor(transform))
+            )
+        );
     }
 
     @Override
